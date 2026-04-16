@@ -1,0 +1,36 @@
+{
+  "name": "hz-tailwindcss",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "next start",
+    "lint": "next lint",
+    "dev": "cross-env APP_ENV=development next dev --turbopack",
+    "dev:prod": "cross-env APP_ENV=production next dev --turbopack",
+    "build:stg": "cross-env APP_ENV=stg next build",
+    "build:prod": "cross-env APP_ENV=production next build",
+    "build:prepod": "cross-env APP_ENV=prepod next build",
+    "start:stg": "cross-env APP_ENV=stg next start",
+    "start:prod": "cross-env APP_ENV=production next start",
+    "start:prepod": "cross-env APP_ENV=prepod next start",
+    "build_sw": "webpack --config webpack.config.js",
+    "build_sv": "webpack --config webpack_sv.config.js"
+  },
+  "dependencies": {
+    "@comscore/analytics": "^7.14.0",
+    "@headlessui/react": "^2.2.9",
+    "@next/third-parties": "^16.1.6",
+    "cross-env": "^10.1.0",
+    "dotenv": "^17.2.4",
+    "next": "16.1.6",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "swiper": "^12.1.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6",
+    "tailwindcss": "^4"
+  }
+}
