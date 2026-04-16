@@ -6,6 +6,7 @@ import { getCachedArticleCategories, getCachedQuickLinks } from "@/services/Cach
 import QuickLinks from "@/components/global/QuickLinks";
 import Footer from "@/components/global/Footer";
 import JsonLd from "@/components/utils/jsonLd";
+import { Suspense } from "react";
 import ComscoreTracker from "@/components/global/ComscoreTracker";
 
 const validLocales = ['en', 'hi'];
@@ -93,13 +94,13 @@ export default async function LocaleLayout({ children, params }) {
     : undefined;
   return (
     <html lang={lang}>
-      <head>
+      {/* <head>
         <link rel="dns-prefetch" href="https://images.herzindagi.info" />
         <link rel="preconnect" href="https://images.herzindagi.info" crossOrigin="anonymous" />
-        {/* <link rel="preconnect" href="https://www.googletagmanager.com" /> */}
-        {/* <link rel="preconnect" href="https://www.google-analytics.com" />
-        <link rel="preconnect" href="https://sb.scorecardresearch.com" /> */}
-      </head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://sb.scorecardresearch.com" />
+      </head> */}
       <body className={`${inter.variable} antialiased`}>
         <JsonLd id="jsonld-organization" data={ORGANIZATION_SCHEMA} />
         <GoogleTagManager gtmId="GTM-W5NRHHKF" />
@@ -107,7 +108,9 @@ export default async function LocaleLayout({ children, params }) {
         {children}
         <QuickLinks QuickLinkData={quickLinksData} />
         <Footer />
-        <ComscoreTracker />
+        <Suspense fallback={null}>
+          <ComscoreTracker />
+        </Suspense>
       </body>
     </html>
   );

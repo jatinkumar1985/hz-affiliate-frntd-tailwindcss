@@ -1,4 +1,4 @@
-// middleware.js
+// proxy.js
 import { NextResponse } from 'next/server';
 
 const defaultLocale = 'en';
@@ -21,7 +21,7 @@ function cloneWithPath(req, pathname) {
 }
 
 /** @param {import('next/server').NextRequest} req */
-export function middleware(req) {
+export function proxy(req) {
   const { pathname } = req.nextUrl;
 
   // Skip middleware for static/assets/api/...

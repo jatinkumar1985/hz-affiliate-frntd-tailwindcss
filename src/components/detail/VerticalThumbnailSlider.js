@@ -9,10 +9,12 @@ export default function VerticalThumbnailSlider({ item }) {
 
   useEffect(() => {
     const loadSwiper = async () => {
+      // Guard: bail out if either ref isn't mounted yet
+      if (!mainSwiperRef.current || !thumbSwiperRef.current) return;
+
       const Swiper = (await import('swiper')).default;
       const { Navigation, Thumbs } = await import('swiper/modules');
 
-      // Thumbnail swiper (vertical)
       const thumbSwiper = new Swiper(thumbSwiperRef.current, {
         modules: [Navigation, Thumbs],
         direction: 'vertical',
@@ -22,14 +24,11 @@ export default function VerticalThumbnailSlider({ item }) {
         slideToClickedSlide: true,
       });
 
-      // Main swiper (vertical) – linked to thumbs
       new Swiper(mainSwiperRef.current, {
         modules: [Navigation, Thumbs],
         direction: 'vertical',
         spaceBetween: 30,
-        thumbs: {
-          swiper: thumbSwiper,
-        },
+        thumbs: { swiper: thumbSwiper },
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
