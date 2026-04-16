@@ -29,8 +29,8 @@ export async function generateMetadata({params}) {
         description: meta?.meta_description,
         keywords: meta?.meta_keywords,
         robots: {
-            index: true,
-            follow: true,
+            index: false,
+            follow: false,
             googleBot: {
                 'max-image-preview': 'large',
             },
